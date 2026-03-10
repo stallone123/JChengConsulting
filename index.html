@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JCheng Consulting — Make Things Better</title>
+<meta name="description" content="JCheng Consulting: Engineering, project development, and strategic advisory for the natural resources industry. Led by John Cheng, P.Eng.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:     #111210;
+    --stone:   #f7f5f0;
+    --warm:    #ede9e0;
+    --copper:  #9c6b3c;
+    --copper2: #c08b5a;
+    --slate:   #4a4740;
+    --rule:    #d8d3c8;
+    --white:   #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--stone);
+    color: var(--ink);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(247,245,240,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 0.9rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-mark svg { width: 22px; height: 22px; fill: var(--copper2); }
+
+  .nav-brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+
+  .nav-brand-text span {
+    display: block;
+    font-size: 0.6rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--slate); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--copper); }
+
+  .nav-links .nav-btn {
+    background: var(--ink); color: var(--stone) !important;
+    padding: 0.55rem 1.4rem;
+    transition: background 0.2s !important;
+  }
+
+  .nav-links .nav-btn:hover { background: var(--copper) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    padding-top: 70px;
+  }
+
+  .hero-left {
+    background: var(--ink);
+    color: var(--stone);
+    padding: 8vw 6vw 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(192,139,90,0.15);
+    border-radius: 50%;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: -80px;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(192,139,90,0.1);
+    border-radius: 50%;
+  }
+
+  .hero-tagline {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--copper2);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 0.9rem;
+  }
+
+  .hero-tagline::before {
+    content: '';
+    width: 36px; height: 1px;
+    background: var(--copper2);
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.06;
+    margin-bottom: 2rem;
+    color: var(--white);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--copper2);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(247,245,240,0.65);
+    max-width: 420px;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.73rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.22s;
+  }
+
+  .btn-copper { background: var(--copper); color: var(--white); }
+  .btn-copper:hover { background: var(--copper2); }
+  .btn-ghost { background: transparent; color: var(--stone); border: 1px solid rgba(247,245,240,0.3); }
+  .btn-ghost:hover { border-color: var(--copper2); color: var(--copper2); }
+  .btn-dark { background: var(--ink); color: var(--white); }
+  .btn-dark:hover { background: var(--copper); }
+
+  .hero-right {
+    background: var(--warm);
+    padding: 8vw 5vw 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--rule);
+  }
+
+  .credential-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .credential-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--copper), var(--copper2));
+  }
+
+  .cred-label {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 0.6rem;
+  }
+
+  .cred-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+
+  .cred-sub {
+    font-size: 0.82rem;
+    color: var(--slate);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .cred-sub a { color: var(--copper); text-decoration: none; }
+  .cred-sub a:hover { text-decoration: underline; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--white);
+    border: 1px solid var(--rule);
+  }
+
+  .hero-stat {
+    padding: 1.5rem 1.25rem;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--copper);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-stat span {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--copper);
+    color: var(--white);
+    padding: 0.7rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+    gap: 2.5rem;
+  }
+
+  .ticker-inner span {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .ticker-inner .sep { opacity: 0.4; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 5%; }
+
+  .section-eyebrow {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--copper);
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--copper);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--copper); }
+
+  /* ─── ABOUT / PHILOSOPHY ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-body p {
+    font-size: 1rem; font-weight: 300;
+    color: var(--slate); line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-body p strong { color: var(--ink); font-weight: 500; }
+
+  .philosophy-pull {
+    border-left: 3px solid var(--copper);
+    padding: 1.5rem 2rem;
+    background: var(--warm);
+    margin: 2rem 0;
+  }
+
+  .philosophy-pull blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-style: italic;
+    font-weight: 400; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .philosophy-pull cite {
+    display: block; margin-top: 0.75rem;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--copper); font-style: normal;
+  }
+
+  .about-right {
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 1.75rem;
+  }
+
+  .info-card-header {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .info-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--stone);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .info-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.2rem;
+  }
+
+  .info-card p {
+    font-size: 0.83rem; color: var(--slate);
+    line-height: 1.65; font-weight: 300;
+  }
+
+  .info-card a { color: var(--copper); text-decoration: none; }
+  .info-card a:hover { text-decoration: underline; }
+
+  /* ─── RADAR / MINERAL DATA ─── */
+  .radar-bg { background: var(--ink); color: var(--stone); }
+
+  .radar-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .radar-title { color: var(--white) !important; }
+  .radar-title em { color: var(--copper2) !important; }
+
+  .radar-body p {
+    font-size: 0.95rem; font-weight: 300;
+    color: rgba(247,245,240,0.7);
+    line-height: 1.8; margin-bottom: 1.1rem;
+  }
+
+  .radar-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--copper2); text-decoration: none;
+    border-bottom: 1px solid rgba(192,139,90,0.35);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .radar-link:hover { color: var(--white); border-color: var(--white); }
+
+  .data-panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+  }
+
+  .data-panel-title {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--copper2); margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .data-row {
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.83rem;
+  }
+
+  .data-row:last-child { border-bottom: none; }
+
+  .data-label { color: rgba(247,245,240,0.5); font-weight: 300; }
+
+  .data-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--white);
+  }
+
+  .data-value.highlight { color: var(--copper2); }
+
+  .zone-badge {
+    display: inline-block;
+    background: rgba(192,139,90,0.15);
+    border: 1px solid rgba(192,139,90,0.3);
+    color: var(--copper2);
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    margin-top: 1.25rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--copper);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .svc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: var(--rule); line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.8rem;
+  }
+
+  .service-card p {
+    font-size: 0.87rem; font-weight: 300;
+    color: var(--slate); line-height: 1.7;
+  }
+
+  /* ─── TEAM ─── */
+  .team-bg { background: var(--warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    text-align: center;
+    padding: 2rem 1.25rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .team-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+  .team-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--stone);
+    border: 2px solid var(--rule);
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--copper);
+  }
+
+  .team-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.25rem;
+  }
+
+  .team-card .role {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 0.75rem;
+  }
+
+  .team-card p {
+    font-size: 0.8rem; font-weight: 300;
+    color: var(--slate); line-height: 1.6;
+  }
+
+  /* ─── BULLETINS ─── */
+  .bulletins-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .bulletin-card {
+    border: 1px solid var(--rule);
+    background: var(--white);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bulletin-date {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 0.75rem;
+  }
+
+  .bulletin-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .bulletin-card p {
+    font-size: 0.83rem; font-weight: 300;
+    color: var(--slate); line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .read-more {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--copper); text-decoration: none;
+    border-bottom: 1px solid rgba(156,107,60,0.3);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .read-more:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ─── PLATFORM / VBAY ─── */
+  .platform-bg { background: var(--ink); color: var(--stone); }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .platform-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .feature-row {
+    display: flex; gap: 1.1rem; align-items: flex-start;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s;
+  }
+
+  .feature-row:hover { background: rgba(255,255,255,0.07); }
+
+  .feature-icon {
+    font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem;
+  }
+
+  .feature-row h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.3rem;
+  }
+
+  .feature-row p {
+    font-size: 0.82rem; font-weight: 300;
+    color: rgba(247,245,240,0.6); line-height: 1.6;
+  }
+
+  .platform-cta-box {
+    background: rgba(192,139,90,0.12);
+    border: 1px solid rgba(192,139,90,0.25);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .platform-cta-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.75rem;
+  }
+
+  .platform-cta-box p {
+    font-size: 0.9rem; font-weight: 300;
+    color: rgba(247,245,240,0.65);
+    line-height: 1.7; margin-bottom: 1.75rem;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-left p {
+    font-size: 1rem; font-weight: 300;
+    color: var(--slate); line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-items {
+    display: flex; flex-direction: column; gap: 1.1rem;
+  }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: center;
+    font-size: 0.87rem; color: var(--slate);
+  }
+
+  .contact-icon {
+    width: 38px; height: 38px; flex-shrink: 0;
+    background: var(--warm);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .contact-form-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+
+  .form-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-sub {
+    font-size: 0.8rem; color: var(--slate);
+    margin-bottom: 1.75rem; font-weight: 300;
+  }
+
+  .field { margin-bottom: 1.1rem; }
+
+  .field label {
+    display: block;
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--slate); margin-bottom: 0.45rem;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--rule);
+    background: var(--stone);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem; color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus { border-color: var(--copper); }
+
+  .field textarea { height: 110px; resize: vertical; }
+
+  .field-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 3rem 5%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--stone); text-decoration: none;
+  }
+
+  .footer-brand span { color: var(--copper2); }
+
+  .footer-nav {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .footer-nav a {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(247,245,240,0.45); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover { color: var(--copper2); }
+
+  .footer-copy {
+    text-align: right;
+    font-size: 0.72rem; color: rgba(247,245,240,0.3);
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.delay-1 { transition-delay: 0.12s; }
+  .reveal.delay-2 { transition-delay: 0.24s; }
+  .reveal.delay-3 { transition-delay: 0.36s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .about-grid, .radar-grid, .platform-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .bulletins-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-copy { text-align: center; }
+    .footer-nav { justify-content: center; flex-wrap: wrap; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <div class="nav-brand-text">
+      JCheng Consulting
+      <span>Make Things Better</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#radar">Radar</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#platform">VBay</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact" class="nav-btn">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tagline">Engineering & Strategic Advisory</p>
+    <h1>Make things<br><em>better.</em><br>One step at<br>a time.</h1>
+    <p class="hero-desc">Project development and strategic advisory for the natural resources industry. Preparing for the new age of engineering in the digital world.</p>
+    <div class="hero-actions">
+      <a href="#radar" class="btn btn-copper">View Active Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="credential-card reveal">
+      <p class="cred-label">Managing Principal</p>
+      <p class="cred-title">John Cheng, P.Eng.</p>
+      <p class="cred-sub">CEO & Chairman, VPX1 Minerals Inc.<br>Founder, VBay Blockchain Ecosystem<br>Vancouver, British Columbia</p>
+    </div>
+    <div class="credential-card reveal delay-1">
+      <p class="cred-label">Current Focus · 2026</p>
+      <p class="cred-title">Project X #001 — River Jordan</p>
+      <p class="cred-sub">Zn-Pb-Ag deposit, Mt. Copeland, Revelstoke BC.<br>3,000m drill program · Summer 2026<br><a href="https://vpx1.netlify.app" target="_blank">↗ vpx1.netlify.app — VPX1 Token Launch</a></p>
+    </div>
+    <div class="hero-stats reveal delay-2">
+      <div class="hero-stat">
+        <strong>20M+</strong>
+        <span>Tonnes (Est.)</span>
+      </div>
+      <div class="hero-stat">
+        <strong>3</strong>
+        <span>Key Metals</span>
+      </div>
+      <div class="hero-stat">
+        <strong>2026</strong>
+        <span>Drill Season</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TICKER ════════ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Engineering Services</span><span class="sep">·</span>
+    <span>Natural Resources</span><span class="sep">·</span>
+    <span>Project Management</span><span class="sep">·</span>
+    <span>Blockchain Tokenization</span><span class="sep">·</span>
+    <span>VBay Ecosystem</span><span class="sep">·</span>
+    <span>Mineral Exploration</span><span class="sep">·</span>
+    <span>Owner Representation</span><span class="sep">·</span>
+    <span>Decentralized Finance</span><span class="sep">·</span>
+    <span>Make Things Better</span><span class="sep">·</span>
+    <span>Engineering Services</span><span class="sep">·</span>
+    <span>Natural Resources</span><span class="sep">·</span>
+    <span>Project Management</span><span class="sep">·</span>
+    <span>Blockchain Tokenization</span><span class="sep">·</span>
+    <span>VBay Ecosystem</span><span class="sep">·</span>
+    <span>Mineral Exploration</span><span class="sep">·</span>
+    <span>Owner Representation</span><span class="sep">·</span>
+    <span>Decentralized Finance</span><span class="sep">·</span>
+    <span>Make Things Better</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-body">
+      <p class="section-eyebrow reveal">About</p>
+      <h2 class="section-title reveal">Principled. <em>Practical.</em><br>Built to last.</h2>
+      <p class="reveal">JCheng Consulting provides <strong>engineering, project management, and strategic advisory</strong> services for the natural resources industry — connecting world-class subject matter expertise with the companies and projects that need it most.</p>
+      <p class="reveal">Founded on the conviction that the best outcomes are built incrementally, through discipline and honest relationships, we operate at the intersection of traditional resource development and the emerging technologies transforming how capital and expertise flow to projects.</p>
+      <div class="philosophy-pull reveal">
+        <blockquote>"Make things better — one step at a time."</blockquote>
+        <cite>— John Cheng, P.Eng., Managing Principal</cite>
+      </div>
+      <p class="reveal">Our platform model is inspired by the <strong>AirBnB paradigm</strong> — connecting the best subject matter experts directly with projects, bypassing traditional obstacles to access world-class expertise at the speed of the digital age.</p>
+    </div>
+    <div class="about-right">
+      <div class="info-card reveal">
+        <div class="info-card-header">
+          <div class="info-icon">🏔️</div>
+          <div>
+            <h4>VPX1 Minerals Inc.</h4>
+            <p class="role" style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--copper);font-weight:600;">CEO & Chairman</p>
+          </div>
+        </div>
+        <p>Junior mining company focused on the Jordan River Zn-Pb-Ag deposit at Mt. Copeland near Revelstoke, BC. 3,000-metre diamond drill program planned for Summer 2026. Acquired from Silver Phoenix Resources in October 2023.</p>
+      </div>
+      <div class="info-card reveal delay-1">
+        <div class="info-card-header">
+          <div class="info-icon">⛓️</div>
+          <div>
+            <h4>VBay Ecosystem</h4>
+            <p class="role" style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--copper);font-weight:600;">Founder & Architect</p>
+          </div>
+        </div>
+        <p>Blockchain tokenization platform designed first for VPX1 Minerals, then to democratize mining investment broadly. Solidity smart contracts with CSA compliance features. <a href="https://vpx1.netlify.app" target="_blank">View the VPX1 token launch →</a></p>
+      </div>
+      <div class="info-card reveal delay-2">
+        <div class="info-card-header">
+          <div class="info-icon">📖</div>
+          <div>
+            <h4>The Mineral Nexus</h4>
+            <p class="role" style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--copper);font-weight:600;">A Short Novel</p>
+          </div>
+        </div>
+        <p>A work of fiction exploring the intersection of mineral discovery, technology, and human ambition. Available for download from JCheng Consulting.</p>
+        <a href="#" style="font-size:0.72rem;color:var(--copper);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">Download PDF →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ RADAR ════════ -->
+<section id="radar" class="radar-bg">
+  <div class="radar-grid">
+    <div class="radar-body">
+      <p class="section-eyebrow reveal" style="color:var(--copper2);">On the Radar · 2026</p>
+      <h2 class="section-title radar-title reveal">Project X #001 —<br><em>River Jordan</em></h2>
+      <p class="reveal">High-potential, early-stage exploration project. The Jordan River (King Fissure) deposit, located on the northeastern slopes of Mount Copeland near Revelstoke, British Columbia, contains significant mineral resources across multiple well-defined zones.</p>
+      <p class="reveal">The deposit sits within the Shuswap Metamorphic Complex, characterized by stratabound, disseminated, and massive sulphide layers with an exceptional track record of historical sampling results.</p>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;" class="reveal">
+        <a href="https://vpx1.netlify.app" target="_blank" class="radar-link">↗ VPX1 Token Launch</a>
+        <a href="#" class="radar-link">↗ Geochem Assessment 2024</a>
+        <a href="#" class="radar-link">↗ James T. Fyles Report</a>
+      </div>
+      <div style="margin-top:2rem;" class="reveal">
+        <div class="zone-badge">Field Work Program · Summer 2026</div>
+        <div class="zone-badge" style="margin-left:0.5rem;">Visual Economic Study · Initiated</div>
+      </div>
+    </div>
+    <div class="reveal delay-1">
+      <div class="data-panel">
+        <p class="data-panel-title">Main Ore Zone — 1991 Estimate</p>
+        <div class="data-row">
+          <span class="data-label">Tonnage</span>
+          <span class="data-value highlight">20,000,000 t</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Silver</span>
+          <span class="data-value">100 g/t</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Lead</span>
+          <span class="data-value">7.5%</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Zinc</span>
+          <span class="data-value">7.5%</span>
+        </div>
+      </div>
+      <div class="data-panel" style="margin-top:1.25rem;">
+        <p class="data-panel-title">Recent Highlight Sample · 802RGB108</p>
+        <div class="data-row">
+          <span class="data-label">Lead</span>
+          <span class="data-value highlight">8.19%</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Zinc</span>
+          <span class="data-value highlight">21.46%</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Silver</span>
+          <span class="data-value highlight">91 g/t</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Interval</span>
+          <span class="data-value">1.0 m</span>
+        </div>
+      </div>
+      <div class="data-panel" style="margin-top:1.25rem;">
+        <p class="data-panel-title">Camp Fault Zone Highlights</p>
+        <div class="data-row">
+          <span class="data-label">JLR-7 Lead</span>
+          <span class="data-value highlight">63.4%</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">JLR-7 Silver</span>
+          <span class="data-value">461 g/t</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">CF-1 Lead</span>
+          <span class="data-value highlight">79.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SERVICES ════════ -->
+<section id="services">
+  <div style="max-width:560px;">
+    <p class="section-eyebrow reveal">Services</p>
+    <h2 class="section-title reveal">What we <em>offer</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="svc-num">01</div>
+      <h3>Engineering Services</h3>
+      <p>Design review, scope of work definition, and budget preparation for natural resource projects. Bringing rigour and experience to front-end engineering decisions that shape project outcomes.</p>
+    </div>
+    <div class="service-card reveal delay-1">
+      <div class="svc-num">02</div>
+      <h3>Project Management</h3>
+      <p>Owner representation, budget management, and schedule oversight. We act as your trusted agent to ensure projects are delivered with accountability, transparency, and efficiency.</p>
+    </div>
+    <div class="service-card reveal delay-2">
+      <div class="svc-num">03</div>
+      <h3>Strategic Advisory</h3>
+      <p>Connecting mining companies with world-class subject matter experts. Annual audits, ethics and safety refreshment programs, and strategic scanning for companies committed to responsible development.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">04</div>
+      <h3>SME Marketplace</h3>
+      <p>Direct access to a curated platform of specialized expertise — bypassing traditional obstacles to connect the best professionals with the projects that need them most. Your reputation is your business development.</p>
+    </div>
+    <div class="service-card reveal delay-1">
+      <div class="svc-num">05</div>
+      <h3>Blockchain & Tokenization</h3>
+      <p>Architecture and implementation of blockchain-based platforms for the resource sector. Smart contract development (Solidity), CSA-compliant token offerings, and decentralized capital formation strategy via VBay.</p>
+    </div>
+    <div class="service-card reveal delay-2">
+      <div class="svc-num">06</div>
+      <h3>Operational Readiness</h3>
+      <p>"Operation Duct Tape" methodology: transforming exploration teams to operating capability in a non-additive budget environment. Situational awareness, just-in-time readiness, and disciplined front-line monitoring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ VBAY PLATFORM ════════ -->
+<section id="platform" class="platform-bg">
+  <div class="platform-grid">
+    <div>
+      <p class="section-eyebrow reveal" style="color:var(--copper2);">The Platform</p>
+      <h2 class="section-title reveal" style="color:var(--white);">VBay — <em>Decentralized</em> Resource Investment</h2>
+      <div class="platform-features">
+        <div class="feature-row reveal">
+          <div class="feature-icon">🏗️</div>
+          <div>
+            <h4>Built on VPX1 First</h4>
+            <p>A "dog food" strategy — proving the model on VPX1 Minerals before scaling to democratize mining investment for all.</p>
+          </div>
+        </div>
+        <div class="feature-row reveal delay-1">
+          <div class="feature-icon">⛓️</div>
+          <div>
+            <h4>CSA-Compliant Smart Contracts</h4>
+            <p>Solidity contracts built with Canadian Securities Administration compliance features, designed for the regulated resource sector.</p>
+          </div>
+        </div>
+        <div class="feature-row reveal delay-2">
+          <div class="feature-icon">🌐</div>
+          <div>
+            <h4>Bypass Traditional Barriers</h4>
+            <p>Connect capital directly with vetted resource projects — eliminating the friction of conventional capital formation and enabling real ownership.</p>
+          </div>
+        </div>
+        <div class="feature-row reveal delay-3">
+          <div class="feature-icon">💡</div>
+          <div>
+            <h4>Wisdom of the Crowd</h4>
+            <p>A curated knowledge platform where experience and insight are recognized, shared, and rewarded — making the whole ecosystem smarter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="platform-cta-box reveal delay-1">
+      <h3>Join the VPX1<br>Token Launch</h3>
+      <p>Participate in the tokenization of the River Jordan mineral deposit. The VBay Ecosystem is now open for early access — be part of the first decentralized financing event for a junior BC mining project.</p>
+      <a href="https://vpx1.netlify.app" target="_blank" class="btn btn-copper" style="display:inline-block;margin-bottom:1rem;">↗ View VPX1 Launch</a>
+      <br>
+      <a href="#contact" class="btn btn-ghost">Request Information Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TEAM ════════ -->
+<section id="team" class="team-bg">
+  <p class="section-eyebrow reveal">The Core Team</p>
+  <h2 class="section-title reveal">People who make<br><em>things happen</em></h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">JC</div>
+      <h4>John Cheng</h4>
+      <p class="role">Managing Principal, P.Eng.</p>
+      <p>CEO & Chairman of VPX1 Minerals. Founder of VBay. Engineering and project development leadership across the natural resource sector.</p>
+    </div>
+    <div class="team-card reveal delay-1">
+      <div class="team-avatar">SM</div>
+      <h4>Sam Mah</h4>
+      <p class="role">Associate</p>
+      <p>Subject matter expertise contributing to JCheng Consulting's advisory and project development network.</p>
+    </div>
+    <div class="team-card reveal delay-2">
+      <div class="team-avatar">GL</div>
+      <h4>Geoff Locke</h4>
+      <p class="role">Metallurgy & Processing</p>
+      <p>Metallurgical and processing expertise with experience at Barrick. Key technical advisor to the VPX1 mineral development program.</p>
+    </div>
+    <div class="team-card reveal delay-3">
+      <div class="team-avatar">+</div>
+      <h4>Join the Team</h4>
+      <p class="role">Open Platform</p>
+      <p>JCheng Consulting is a private group of world-class experts. If you are the best at what you do, we want to connect.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BULLETINS ════════ -->
+<section id="bulletins">
+  <p class="section-eyebrow reveal">Knowledge & Bulletins</p>
+  <h2 class="section-title reveal">Making things better,<br><em>together</em></h2>
+  <div class="bulletins-grid">
+    <div class="bulletin-card reveal">
+      <p class="bulletin-date">Special Bulletin · 2020-001</p>
+      <h3>COVID-19 Response for Engineers</h3>
+      <p>Guidance on safe workplace practices, distributed teams, client communication, and maintaining project continuity through disruption. A model for resilient engineering practice.</p>
+      <a href="#" class="read-more">Read Bulletin →</a>
+    </div>
+    <div class="bulletin-card reveal delay-1">
+      <p class="bulletin-date">Special Bulletin · 2020-002</p>
+      <h3>Work From Home — A Practical Guide</h3>
+      <p>Structuring routines, managing home/work boundaries, staying connected with clients and colleagues — lessons from the first distributed work era for engineers and project managers.</p>
+      <a href="#" class="read-more">Read Bulletin →</a>
+    </div>
+    <div class="bulletin-card reveal delay-2">
+      <p class="bulletin-date">Wisdom Archive</p>
+      <h3>Curated Industry Knowledge</h3>
+      <p>An organized, peer-reviewed knowledge base where images, methodology, memos, and drawings from real project experience are shared and recognized. Good contributions rise to the top.</p>
+      <a href="#" class="read-more">Access the Archive →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact" style="background:var(--warm);border-top:1px solid var(--rule);">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <p class="section-eyebrow reveal">Get in Touch</p>
+      <h2 class="section-title reveal">Start the<br><em>conversation</em></h2>
+      <p class="reveal">Whether you're a mining company looking for direct access to world-class expertise, an SME seeking to build a track record on impactful projects, or an investor interested in the VBay token ecosystem — we'd like to hear from you.</p>
+      <div class="contact-items reveal">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <span>admin@jchengconsulting.com</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <span>Vancouver, British Columbia, Canada</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <a href="https://vpx1.netlify.app" target="_blank" style="color:var(--copper);">vpx1.netlify.app — VPX1 Token Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-card reveal delay-1">
+      <h3 class="form-header">Send a Message</h3>
+      <p class="form-sub">All inquiries treated with strict confidentiality.</p>
+      <div class="field-row">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" placeholder="First name">
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Last name">
+        </div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="field">
+        <label>Organization</label>
+        <input type="text" placeholder="Company or organization">
+      </div>
+      <div class="field">
+        <label>I am a...</label>
+        <select>
+          <option value="">Select...</option>
+          <option>Mining Company / Project Developer</option>
+          <option>Subject Matter Expert / SME</option>
+          <option>Investor / Capital Partner</option>
+          <option>Engineer / Technical Professional</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Message</label>
+        <textarea placeholder="Tell us what you're working on or looking for..."></textarea>
+      </div>
+      <button class="btn btn-dark" style="width:100%;" onclick="alert('Connect this form to Formspree or your backend to enable sending.')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <a href="#" class="footer-brand">JCheng <span>Consulting</span></a>
+  <ul class="footer-nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#radar">Radar</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#platform">VBay</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 JCheng Consulting · Vancouver, BC</p>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Immediate reveal for hero items
+  setTimeout(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+  }, 150);
+</script>
+</body>
+</html>
