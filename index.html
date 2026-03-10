@@ -527,53 +527,6 @@
   /* ─── TEAM ─── */
   .team-bg { background: var(--warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .team-card {
-    background: var(--white);
-    border: 1px solid var(--rule);
-    text-align: center;
-    padding: 2rem 1.25rem;
-    transition: box-shadow 0.2s;
-  }
-
-  .team-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-
-  .team-avatar {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    background: var(--stone);
-    border: 2px solid var(--rule);
-    margin: 0 auto 1rem;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; font-weight: 700;
-    color: var(--copper);
-  }
-
-  .team-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; font-weight: 700;
-    color: var(--ink); margin-bottom: 0.25rem;
-  }
-
-  .team-card .role {
-    font-size: 0.7rem; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--copper); margin-bottom: 0.75rem;
-  }
-
-  .team-card p {
-    font-size: 0.8rem; font-weight: 300;
-    color: var(--slate); line-height: 1.6;
-  }
-
   /* ─── BULLETINS ─── */
   .bulletins-grid {
     display: grid;
@@ -1125,36 +1078,12 @@
   </div>
 </section>
 
-<!-- ════════ TEAM ════════ -->
-<section id="team" class="team-bg">
-  <p class="section-eyebrow reveal">The Core Team</p>
-  <h2 class="section-title reveal">People who make<br><em>things happen</em></h2>
-  <div class="team-grid">
-    <div class="team-card reveal">
-      <div class="team-avatar">JC</div>
-      <h4>John Cheng</h4>
-      <p class="role">Managing Principal, P.Eng.</p>
-      <p>CEO & Chairman of VPX1 Minerals. Founder of VBay. Engineering and project development leadership across the natural resource sector.</p>
-    </div>
-    <div class="team-card reveal delay-1">
-      <div class="team-avatar">SM</div>
-      <h4>Sam Mah</h4>
-      <p class="role">Associate</p>
-      <p>Subject matter expertise contributing to JCheng Consulting's advisory and project development network.</p>
-    </div>
-    <div class="team-card reveal delay-2">
-      <div class="team-avatar">GL</div>
-      <h4>Geoff Locke</h4>
-      <p class="role">Metallurgy & Processing</p>
-      <p>Metallurgical and processing expertise with experience at Barrick. Key technical advisor to the VPX1 mineral development program.</p>
-    </div>
-    <div class="team-card reveal delay-3">
-      <div class="team-avatar">+</div>
-      <h4>Join the Team</h4>
-      <p class="role">Open Platform</p>
-      <p>JCheng Consulting is a private group of world-class experts. If you are the best at what you do, we want to connect.</p>
-    </div>
-  </div>
+<!-- ════════ TEAM (gated — members login only) ════════ -->
+<section id="team" class="team-bg" style="text-align:center;">
+  <p class="section-eyebrow reveal" style="justify-content:center;">The Core Team</p>
+  <h2 class="section-title reveal">A private group of<br><em>world-class experts</em></h2>
+  <p class="reveal" style="max-width:480px;margin:0 auto 2rem;font-size:1rem;font-weight:300;color:var(--slate);line-height:1.8;">JCheng Consulting brings together the best subject matter experts in the natural resources industry. Team profiles and contact details are available to registered members.</p>
+  <a href="/wp-login.php" class="btn btn-dark reveal">Member Login →</a>
 </section>
 
 <!-- ════════ BULLETINS ════════ -->
@@ -1193,7 +1122,7 @@
       <div class="contact-items reveal">
         <div class="contact-item">
           <div class="contact-icon">✉️</div>
-          <span>admin@jchengconsulting.com</span>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68090c05010628020b000d060f0b07061b1d041c01060f460b0705">[email&#160;protected]</a></span>
         </div>
         <div class="contact-item">
           <div class="contact-icon">📍</div>
@@ -1260,7 +1189,7 @@
   <p class="footer-copy">© 2026 JCheng Consulting · Vancouver, BC</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Reveal on scroll
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1271,12 +1200,4 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Immediate reveal for hero items
-  setTimeout(() => {
-    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
-  }, 150);
-</script>
-</body>
-</html>
+  document.query
